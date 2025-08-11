@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Message } from '../types/api';
 import LoadingIndicator from './LoadingIndicator';
+import MarkdownRenderer from './MarkdownRenderer';
 
 interface MessageBubbleProps {
   message: Message;
@@ -40,6 +41,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
         <div className={`message-text ${isBot ? 'bot' : 'user'}`}>
           {isLoading ? (
             <LoadingIndicator />
+          ) : isBot ? (
+            <MarkdownRenderer content={text} />
           ) : (
             <p>{text}</p>
           )}

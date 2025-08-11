@@ -5,6 +5,8 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const API_TOKEN = import.meta.env.VITE_API_TOKEN;
 const ACCOUNT_ID = import.meta.env.VITE_ACCOUNT_ID;
 const AGENT_ID = import.meta.env.VITE_AGENT_ID;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -15,8 +17,10 @@ const apiClient = axios.create({
 });
 
 export const startExecution = async (userPrompt: string, file?: FileData): Promise<ExecutionStartResponse> => {
-  const inputs: { userPrompt: string; file?: FileData } = {
+  const inputs: { userPrompt: string; file?: FileData; supabaseKey: string; supabaseUrl: string } = {
     userPrompt,
+    supabaseKey: SUPABASE_KEY,
+    supabaseUrl: SUPABASE_URL,
   };
 
   if (file) {
